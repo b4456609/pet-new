@@ -2,9 +2,13 @@
 
 var React = require('react');
 var mui = require('material-ui');
-var RaisedButton = mui.RaisedButton;
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
+var AppLeftNav = require('./app-left-nav.jsx');
+var { AppCanvas, AppBar } = mui;
+
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
 
 var Main = React.createClass({
 
@@ -18,35 +22,30 @@ var Main = React.createClass({
     };
   },
 
-  componentWillMount: function() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500
-    });
+  _onLeftIconButtonTouchTap: function() {
+    this.refs.leftNav.toggle();
   },
 
   render: function() {
-
-    var containerStyle = {
-      textAlign: 'center',
-      paddingTop: '200px'
-    };
+    var title = 'Test';
+    
 
     return (
-      <div style={containerStyle}>
-
-        <h1>material-ui</h1>
-        <h2>example project</h2>
-
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
-
-      </div>
+      <AppCanvas>
+        <AppBar
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
+          title={title}
+          zDepth={1}/>
+        <AppLeftNav ref="leftNav" />
+        <RouteHandler />
+      </AppCanvas>
     );
   },
 
   _handleTouchTap: function() {
     alert('1-2-3-4-5');
   }
-  
+
 });
 
 module.exports = Main;
