@@ -13,7 +13,8 @@ var Dog = React.createClass({
   },
   componentDidMount: function () {
     console.log('componentDidMount');
-    var url = 'http://140.121.197.135:11116/Animal/Animal?type=1';
+    //var url = 'http://140.121.197.135:11116/Animal/Animal?type=1';
+    var url = 'http://localhost:8081/Animal/Animal?type=1';
     var self = this;
 
     $.ajax({
